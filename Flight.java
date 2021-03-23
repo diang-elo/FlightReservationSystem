@@ -112,9 +112,14 @@ public class Flight
 	public int getMaxSeatss(){return aircraft.getNumSeats();}
 	// Check to see if there is room on this flight - compare current passenger count
 	// with aircraft max capacity of economy seats
+
+	/***
+	 * Checks if the current amount of econ passengers are less than the max amount of seats
+	 * @return	True if passangers < max seats. Else false
+	 */
 	public boolean seatsAvailable()
 	{
-		System.out.println(getPassengers());
+
 		int currentSeatsTaken = passengers;
 		int maxSeats = aircraft.getNumSeats();
 
@@ -128,6 +133,10 @@ public class Flight
 	 * Cancel a seat - essentially reduce the passenger count by 1. Make sure the count does not
 	 * fall below 0 (see instance variable passenger)
 	 */
+
+	/***
+	 * reduces the number of passengers by one if passengers > 0
+	 */
 	public void cancelSeat()
 	{
 		// your code here
@@ -140,23 +149,31 @@ public class Flight
 	 * reserve a seat on this flight - essentially increases the passenger count by 1 only if there is room for more
 	 * economy passengers on the aircraft used for this flight (see instance variables above)
 	 */
+
+	/***
+	 * If seats are available, increase passengers by one and return true
+	 * else return false
+	 * @return
+	 */
 	public boolean reserveSeat()
 	{
-		System.out.println("IM IN HEREERERE" + seatsAvailable());
+
 		if(seatsAvailable()){
-			System.out.println("IM IN HEREERERE1111");
-			System.out.println(getPassengers());
-			System.out.println( aircraft.getNumSeats());
+
 			passengers ++;
 			return true;
 		}else{
-			System.out.println("IM IN HEREERERE22222");
 			return false;
 		}
 		// your code here
 
 	}
-	
+
+	/***
+	 *
+	 * @return airline, flightnum, dest, departureTime, flightDuration, status
+	 * to string
+	 */
 	public String toString()
 	{
 		 return airline + "\t Flight:  " + flightNum + "\t Dest: " + dest + "\t Departing: " + departureTime + "\t Duration: " + flightDuration + "\t Status: " + status;

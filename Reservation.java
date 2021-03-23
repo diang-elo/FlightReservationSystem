@@ -20,30 +20,30 @@ public class Reservation
 	public boolean isFirstClass()
 	{
 		return firstClass;
-	}
+	} // return first class
 
 	public void setFirstClass()
 	{
 		this.firstClass = true;
-	}
+	} // set first class
 
 	public String getFlightNum()
 	{
 		return flightNum;
-	}
+	} // return flight num
 	
 	public String getFlightInfo()
 	{
 		return flightInfo;
-	}
+	} // return flightinfo
 
 	public void setFlightInfo(String flightInfo)
 	{
 		this.flightInfo = flightInfo;
-	}
+	} //set flightinfo
 
 	public void print()
 	{
-		System.out.println(flightInfo);
+		System.out.println(flightInfo);//print flightinfo
 	}
 }

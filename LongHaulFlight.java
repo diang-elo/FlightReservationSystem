@@ -47,7 +47,7 @@ public class LongHaulFlight extends Flight
 	{
 		// override the inherited reserveSeat method and call the reserveSeat method below with an economy seatType
 		// use the constants defined at the top
-		System.out.println("zzzzzzzzzzzzzz");
+
 		reserveSeat(economy);
 
 		return true;
@@ -68,19 +68,19 @@ public class LongHaulFlight extends Flight
 		// else return false
 		
 		// remove this once you have written your code
-		System.out.println("yyyyyyyyyyyyyyyy");
+
 
 		if(seatType.equals(economy)){
 
-			System.out.println("111111111111111111");
+
 			return super.reserveSeat();
 		}else if(seatType.equals(firstClass)){
 			if(numFirstClassPassengers < aircraft.getNumFirstClassSeats()){
-				System.out.println("22222222222222222222222");
+
 				numFirstClassPassengers ++;
 				return true;
 			}else{
-				System.out.println("Im in here");
+
 				return false;
 			}
 		}

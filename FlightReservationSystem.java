@@ -49,8 +49,7 @@ public class FlightReservationSystem
 					word = commandLine.next();
 					Reservation x = manager.reserveSeatOnFlight(word, LongHaulFlight.economy);
 					if(x == null){
-						System.out.println("in here");
-						manager.getErrorMessage();
+						System.out.println(manager.getErrorMessage());
 					}else{
 						myReservations.add(x);
 						x.print();
@@ -78,8 +77,7 @@ public class FlightReservationSystem
 					flight = commandLine.next();
 					Reservation x = manager.reserveSeatOnFlight(flight,LongHaulFlight.firstClass);
 					if(x == null){
-						System.out.println("Im in the null");
-						manager.getErrorMessage();
+						System.out.println(manager.getErrorMessage());
 					}else{
 						myReservations.add(x);
 						x.print();
@@ -125,7 +123,7 @@ public class FlightReservationSystem
 
 					for (int i = 0; i < myReservations.size(); i++){
 							Reservation x = myReservations.get(i);
-						if(x.getFlightNum().equals(flightNum) == true){
+						if(x.getFlightNum().equals(flightNum)){
 							status = true;
 							found = true;
 //							Reservation found = myReservations.get(i);

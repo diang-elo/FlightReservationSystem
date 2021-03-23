@@ -89,9 +89,15 @@ public class FlightManager
    * you can assume every airline name is always 2 words. 
    * 
    */
+
+    /***
+     * Get the first two letters of airline name and add random number from 101-300 to the end
+     * @param airline --> inputed airline name
+     * @return return first two letters + random number
+     */
   private String generateFlightNumber(String airline)
   {
-      Scanner scan = new Scanner(airline);
+      Scanner scan = new Scanner(airline); //scanner for airline
 
       String complete = "";
 
@@ -102,13 +108,14 @@ public class FlightManager
           complete += letter;
       }
       int randNum = getRandomNumberUsingNextInt(101,301); // calls get random number to generate a num btw 101 and 300
-      complete += randNum;
-      // Your code here
+      complete += randNum; // add random number to end of complete
+
   	return complete; // delete this when you finish the code
   }
 
-  // Prints all flights in flights array list (see class Flight toString() method) 
-  // This one is done for you!
+    /***
+     * Prints all flights in flights array list
+     */
   public void printAllFlights()
   {
   	for (int i = 0; i < flights.size(); i++)
@@ -119,6 +126,12 @@ public class FlightManager
   
   // Given a flight number (e.g. "UA220"), check to see if there are economy seats available
   // if so return true, if not return false
+
+    /***
+     *
+     * @param flightNum --> flight num
+     * @return true if seat available, else false
+     */
   public boolean seatsAvailable(String flightNum)
   {
     // First check for a valid flight number
@@ -128,8 +141,6 @@ public class FlightManager
     // Once a Flight object is found, check if seats are available (see class Flight) 
     // if flight is full, set errorMsg to an appropriate message (see video) and return false
     // otherwise return true
-
-
       for (int i = 0; i < flights.size(); i++){
 
 
@@ -155,23 +166,33 @@ public class FlightManager
   // class LongHaulFlight defines two seat types
   // I  suggest you first write this method *without* considering class LongHaulFlight 
   // once that works (test it!!), add the long haul flight code , String seatType
+
+    /***
+     *
+     * @param flightNum --> flight num
+     * @param seatType --> seat type (econ or private)
+     * @return return reservation if flight available and flight equals flight num
+     */
   public Reservation reserveSeatOnFlight(String flightNum, String seatType)
   {
   	// Check for valid flight number by searching through flights array list
   	// If matching flight is not found, set instance variable errorMsg (see at top) and return null
       boolean found = false;
+
+      //loop through flights
       for (int i = 0; i < flights.size(); i++){
 
+            // check to see if current flight num is equal to flightnum param
+          if(flights.get(i).getFlightNum().equals(flightNum)){
 
-          if(flights.get(i).getFlightNum().equals(flightNum) == true){
-
+              // if statement for longhaul flight --> checks if param seatType is first class and flight is instance of longHaulFlight
           if(seatType.equals(LongHaulFlight.firstClass) && flights.get(i) instanceof LongHaulFlight){
-              System.out.println(" I AM FIRST CLASS");
-              boolean space = flights.get(i).seatsAvailable();
+//              boolean space = flights.get(i).seatsAvailable();
 
-              if(((LongHaulFlight)flights.get(i)).reserveSeat(seatType) == true){
+              //if seat available make first class res
+              if(((LongHaulFlight) flights.get(i)).reserveSeat(seatType)){
                   Reservation fRes = new Reservation(flightNum, ((LongHaulFlight) flights.get(i)).toStringFC());
-                  fRes.setFirstClass();
+                  fRes.setFirstClass(); //set res to first class
                   return fRes;
               }else{
 
@@ -179,10 +200,12 @@ public class FlightManager
                   return null;
               }
           }
+          // reserve seat for econ
           else {
 //              Flight x = flights.get(i);
               found = true;
-              System.out.println(" found " + flights.get(i).seatsAvailable() + " " + flights.get(i).getPassengers() + " " +flights.get(i).getMaxSeatss());
+
+              // if seat availible create new res
               if(flights.get(i).seatsAvailable()){
                   Reservation res = new Reservation(flightNum, flights.get(i).toString());
                   flights.get(i).reserveSeat();
@@ -195,7 +218,7 @@ public class FlightManager
           }
       if (found == false){
           errorMsg =("Flight not found");
-          System.out.println("not found");
+
           return null;
       }
 
@@ -220,7 +243,11 @@ public class FlightManager
   	
   	return null; // remove when finished code above
   }
-  
+
+    /***
+     *
+     * @return errorMsg (contains an error message)
+     */
   public String getErrorMessage()
   {
 
@@ -230,6 +257,13 @@ public class FlightManager
   /*
    * Given a Reservation object, cancel the seat on the flight
    */
+
+    /***
+     * loops through flights  and checks if flight num(i) equals reservation number. Cancels first class
+     * seats or econ seats if there. Else error message == flight not found
+     * @param res --> given reservation
+     * @return true if flight found else flase
+     */
   public boolean cancelReservation(Reservation res)
   {
   	// Get the flight number string from res
@@ -269,14 +303,14 @@ public class FlightManager
     return false; // remove this when you have written the code above
   }
   
-  // Sort the array list of flights by increasing departure time 
-  // Essentially one line of code but you will be making use of a Comparator object below
+  // Sort the array list of flights by increasing departure time
   public void sortByDeparture()
   {
       Collections.sort(flights,new DepartureTimeComparator());
   }
-  // Write a simple inner class that implements the Comparator interface (NOTE: not *Comparable*)
-  // This means you will be able to compare two Flight objects by departure time
+
+
+  // compare two Flight objects by departure time
   private class DepartureTimeComparator implements Comparator <Flight>
   {
       @Override
@@ -290,14 +324,13 @@ public class FlightManager
       }
   }
 
-  //Sort the array list of flights by increasing flight duration  
-  // Essentially one line of code but you will be making use of a Comparator object below
+  //Sort the array list of flights by increasing flight duration
   public void sortByDuration()
   {
       Collections.sort(flights,new DurationComparator());
   }
-  //Write a simple inner class that implements the Comparator interface (NOTE: not *Comparable*)
- // This means you will be able to compare two Flight objects by duration  getFlightDuration()
+
+ // T compare two Flight objects by duration
   private class DurationComparator implements Comparator <Flight>
   {
 
@@ -311,8 +344,7 @@ public class FlightManager
           return 0;
       }
   }
-  // Prints all aircraft in airplanes array list. 
-  // See class Aircraft for a print() method
+  // Prints all aircraft in airplanes array list.
   public void printAllAircraft()
   {
   	for (int i = 0; i < airplanes.size(); i++){
@@ -321,8 +353,7 @@ public class FlightManager
     }
   }
   
-  // Sort the array list of Aircraft objects 
-  // This is one line of code. Make sure class Aircraft implements the Comparable interface
+  // Sort the array list of Aircraft objects
   public void sortAircraft()
   {
   	Collections.sort(airplanes);

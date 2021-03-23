@@ -57,22 +57,25 @@ public class Aircraft implements Comparable <Aircraft>
 		System.out.println("Model: " + model + "\t Economy Seats: " + numEconomySeats + "\t First Class Seats: " + numFirstClassSeats);
 	}
 
-	/*
-	 * Write a compareTo method that is part of the Comparable interface
+	/***
+	 *
+	 * @param other --> other aircraft
+	 * @return
+	 * compares two aircrafts to sort. If num of econ seats are the same, compare by first class seats
+	 * else compare by econ seats.
 	 */
-
 	public int compareTo(Aircraft other)
 	{
-		int a = this.numEconomySeats;
-		int b = other.numEconomySeats;
-		boolean result = (a == b);
+		int a = this.numEconomySeats; //number of econ seats
+		int b = other.numEconomySeats; // number of econ seats of other
+		boolean result = (a == b); // if num a == num b --> true, else false
 
 		if (result == true){
-			if(this.numFirstClassSeats > other.numFirstClassSeats) return 1;
-			if(this.numFirstClassSeats < other.numFirstClassSeats) return -1;
+			if(this.numFirstClassSeats > other.numFirstClassSeats) return 1; // if num first class > other first class return 1
+			if(this.numFirstClassSeats < other.numFirstClassSeats) return -1; // if num first class < other first class return -1
 		}else{
-			if (this.numEconomySeats > other.numEconomySeats) return 1;
-			if (this.numEconomySeats < other.numEconomySeats)return -1;
+			if (this.numEconomySeats > other.numEconomySeats) return 1; //if num econ seats > other econ seats return 1
+			if (this.numEconomySeats < other.numEconomySeats)return -1; //if num econ seats < other econ seats return -1
 		}
 
 
