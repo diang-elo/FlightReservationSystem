@@ -35,11 +35,11 @@ public class FlightManager
   	// IN ASSIGNMENT 2 YOU WILL BE LOADING THIS INFORMATION FROM A FILE
   
   	// Create some aircraft types with max seat capacities
-  	airplanes.add(new Aircraft(4, "Boeing 737"));
-  	airplanes.add(new Aircraft(4,"Airbus 320"));
-  	airplanes.add(new Aircraft(4, "Dash-8 100"));
-  	airplanes.add(new Aircraft(4, "Bombardier 5000"));
-  	airplanes.add(new Aircraft(4, 2, "Boeing 747"));
+      airplanes.add(new Aircraft(85, "Boeing 737"));
+      airplanes.add(new Aircraft(180,"Airbus 320"));
+      airplanes.add(new Aircraft(37, "Dash-8 100"));
+      airplanes.add(new Aircraft(12, "Bombardier 5000"));
+      airplanes.add(new Aircraft(592, 14, "Boeing 747"));
   	
   	// Populate the list of flights with some random test flights
   	String flightNum = generateFlightNumber("United Airlines");
@@ -211,13 +211,13 @@ public class FlightManager
                   flights.get(i).reserveSeat();
                   return res;
               }else{
-                  errorMsg =("Flight full");
+                  errorMsg =("Flight " + flightNum + " Full");
                   return null;
               }
           }}
           }
       if (found == false){
-          errorMsg =("Flight not found");
+          errorMsg =("Flight " +flightNum+" Not found");
 
           return null;
       }
